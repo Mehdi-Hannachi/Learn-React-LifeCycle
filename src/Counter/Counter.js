@@ -1,30 +1,35 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 
-class Counter extends Component {
-  state = {
-    count: 0,
-    timer: 0,
+const Counter = () => {
+  const [count, setCount] = useState(0);
+  const [timer, setTimer] = useState(0);
+
+  useEffect(() => {
+    const intervall = setInterval(() => {
+      setTimer(timer + 1);
+    }, 1000);
+
+    return () => clearInterval(intervall);
+  }, [timer]);
+
+  const increment = () => {
+    setCount(count + 1);
   };
 
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
+  const reset = () => {
+    setCount(0);
   };
-  componentDidMount() {
-    setInterval(() => this.setState({ timer: this.state.timer + 1 }), 1000);
-  }
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.increment}> Click me </button>
-        <span>{this.state.count}</span>
-        <br />
-        <span>{this.state.timer}</span>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <button onClick={increment}> Click me </button>
+      <span>{count}</span>
+      <br />
+      <span onClick={reset}> Reset </span>
+      <br />
+      <span>{timer}</span>
+    </div>
+  );
+};
 
 export default Counter;

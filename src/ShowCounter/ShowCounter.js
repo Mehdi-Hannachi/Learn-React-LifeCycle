@@ -12,9 +12,7 @@ class ShowCounter extends Component {
         <button onClick={() => this.setState({ show: !this.state.show })}>
           Show
         </button>
-        {this.state.show ? (
-          <Counter timer={this.state.timer} setTimer={this.setTimer} />
-        ) : null}
+        {this.state.show ? <Counter /> : null}
       </div>
     );
   }
