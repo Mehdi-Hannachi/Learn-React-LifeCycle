@@ -1,22 +1,16 @@
 import "./App.css";
 import React from "react";
+import Counter from "./Counter/Counter";
+import ShowCounter from "./ShowCounter/ShowCounter";
 
 class App extends React.Component {
-  state = {
-    count: 2,
-  };
-
-  increment = () => {
-    this.setState({
-      count: this.state.count + 1,
-    });
-  };
-
+  componentDidUpdate() {
+    console.log("Hello");
+  }
   render() {
     return (
       <div className="App">
-        <button onClick={this.increment}> Click me </button>
-        <span>{this.state.count}</span>
+        <ShowCounter />
       </div>
     );
   }
